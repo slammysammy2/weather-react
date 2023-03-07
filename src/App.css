@@ -1,38 +1,53 @@
 .App {
-  text-align: center;
+  max-width: 600px;
+  margin: 30px auto;
+  background-color: whitesmoke;
+  opacity: 75%;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+body {
+  background-image: url("image/weatherbackground.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  max-width: 200%;
+  font-family: sans-serif;
+}
+h1 {
+  font-size: 32px;
+  opacity: 80%;
+  line-height: 28px;
+  display: block;
+  font-weight: 400;
+  margin-bottom: 10;
+}
+ul {
+  margin: 0;
+  padding: 0;
+}
+li {
+  list-style: none;
+  opacity: 80%;
+  font-size: 16px;
+  font-weight: 200;
+  line-height: 19px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+#temperature {
+  opacity: 80%;
+}
+.btn {
+  background-color: white;
+  border-color: #0f253a;
+  border-radius: 4px;
+  color: #0f253a;
+  opacity: 80%;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.btn:hover {
+  background-color: #97d2ec;
+  border: none;
+  border-radius: 5px;
+  transition: all 150ms ease-in-out;
 }
