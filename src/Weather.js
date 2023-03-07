@@ -15,7 +15,7 @@ export default function Weather() {
 
   return (
     <div className="Weather">
-      <form class="mb-3">
+      <form className="mb-3">
         <div className="row">
           <div className="col-6">
             <input
