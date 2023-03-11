@@ -23,7 +23,7 @@
   line-height: 1;
 }
 
-.Weather .weather-temperature .units {
+.Weather .weather-temperature .unit {
   position: relative;
   font-size: 16px;
   top: -34px;

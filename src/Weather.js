@@ -2,29 +2,44 @@ import React, { useState } from "react";
 import "./Weather.css";
 import "./App.css";
 import axios from "axios";
+import WeatherInfo from "./WeatherInfo";
 
-export default function Weather() {
-  const [ready, setReady] = useState(false);
-  const [temperature, setTemperature] = useState(null);
-  function handleResponse(reponse) {
-    setTemperature(response.data.main.temp);
-    setReady(true);
+export default function Weather(props) {
+  const [weatherData, setWeatherData] = useState({ ready: false });
+  const [city, setCity] = useState(props.defaultCity);
+
+  function handleResponse(response) {
+    setWeatherData({
+      ready: true,
+      temperature: response.data.main.temp,
+      humidity: response.data.main.humidity,
+      wind: response.data.main.wind.speed,
+      city: response.data.city,
+      date: new Date(response.data.dt * 1000),
+      description: response.data.condition.description,
+      icon: response.data.weather[0].icon,
+    });
   }
 
-  let weatherData = {
-    city: "Vienna",
-    date: "Tuesday 10:00",
-    description: "Cloudy",
-    imgUrl:
-      "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAALEgAACxIB0t1+/AAAAUhJREFUeNrt230NgzAQh2GkIAUJyJgMJCABCZNQKcxBHdyOpFkyEkYGV9oL75Lff2Rwz8pXe2tEpLlzGgAAAAAAAAAAYHsDg4+8Hp1m0ATNrJGNzGmbZdvOZN+lAFLRkyb+KHgvMX1H5wYgFR5OFL2VcATiMgA9uFbzzFD4Oss+2qoA9ID6k0P9yKnRVwGgBzJeWPg6Y1GAdIGSwpmKAFRS/C5CFoDCw/6v08EcIF3wpNL0WQHSrS5WDBDXt0hrgGfFxX+eE7IApCc8cZIuB0BwBBBMAZz9+l+jwApgcggwWQJEhwDRBMDp8P+cBhYAg2OAwQIgOAYIFgCzY4DZAkBcB4C7AywvcIwAAADgNsiDEI/CvAzxOsyECFNiTIoyLc7CCEtjLI6yPE6DBC0yNEnRJkejJK2yNEvTLs8fJgAAAAAAAADg1nkDlR7XfJiH1ggAAAAASUVORK5CYII=",
-    humidity: "80",
-    wind: "30",
-  };
+  function search() {
+    const apiKey = "0efb4fc16a9ed98dc0b3aafd8491d6ad";
+    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+    axios.get(apiUrl).then(handleResponse);
+  }
 
-  if (ready) {
+  function handleSubmit(event) {
+    event.preventDefault();
+    search();
+  }
+
+  function handleCityChange(event) {
+    setCity(event.target.value);
+  }
+
+  if (weatherData.ready) {
     return (
       <div className="Weather">
-        <form className="mb-3">
+        <form className="mb-3" onSubmit={handleSubmit}>
           <div className="row">
             <div className="col-6">
               <input
@@ -32,6 +47,7 @@ export default function Weather() {
                 placeholder="Type a city here ..."
                 className="form-control"
                 autocomplete="off"
+                onChange={handleCityChange}
               />
             </div>
             <div className="col-auto">
@@ -46,46 +62,11 @@ export default function Weather() {
             </div>
           </div>
         </form>
-
-        <div className="overview">
-          <h1>{weatherData.city}</h1>
-          <ul>
-            <li>
-              <span>{weatherData.date}</span>
-            </li>
-            <li>
-              <span>{weatherData.description}</span>
-            </li>
-          </ul>
-        </div>
-        <div className="row">
-          <div className="col-6">
-            <div className="Flexbox weather-temperature">
-              <img src={weatherData.imgUrl} alt={weatherData.description} />
-              <strong>19</strong>
-              <span className="units">°C</span>
-            </div>
-          </div>
-          <div className="col-6">
-            <ul>
-              <li>
-                <span>{weatherData.humidity}%</span>
-              </li>
-              <li>
-                <span>{weatherData.wind} km/h</span>
-              </li>
-            </ul>
-          </div>
-        </div>
-        <div className="weather-forecast"></div>
+        <WeatherInfo data={weatherData} />
       </div>
     );
   } else {
-    const apiKey = "caafdc7aea30a3ea4d8a3bedof16c24t";
-    let city = "Vienna";
-    let apiUrl =
-      "https://api.shecodes.io/weather/v1/current?query={city}&key={apiKey}&units=metric";
-    axios.get(apiUrl).then(handleResponse);
+    search();
     return "Loading...";
   }
 }
