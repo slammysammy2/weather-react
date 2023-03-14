@@ -53,13 +53,6 @@ export default function Weather(props) {
             <div className="col-auto">
               <input type="submit" value="Search" class="btn btn-primary" />
             </div>
-            <div className="col-auto">
-              <input
-                type="submit"
-                value="Current"
-                className="btn btn-primary"
-              />
-            </div>
           </div>
         </form>
 
