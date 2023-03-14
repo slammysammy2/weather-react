@@ -22,8 +22,9 @@ export default function WeatherInfo(props) {
       <div className="row">
         <div className="col-6">
           <div className="Flexbox weather-temperature">
-            <WeatherIcon code={props.data.icon} alt={props.data.description} />
-            <img src={props.data.iconUrl} alt={props.data.description} />
+            <div className="float-left">
+              <WeatherIcon code={props.data.icon} />
+            </div>
             <WeatherTemperature celsius={props.data.temperature} />
           </div>
         </div>
@@ -31,10 +32,10 @@ export default function WeatherInfo(props) {
         <div className="col-6">
           <ul>
             <li>
-              <span>{props.data.humidity}%</span>
+              <span>Humidity: {props.data.humidity}%</span>
             </li>
             <li>
-              <span>{props.data.wind} km/h</span>
+              <span>Wind speed: {Math.round(props.data.wind)} km/h</span>
             </li>
           </ul>
         </div>

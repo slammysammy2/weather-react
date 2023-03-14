@@ -2,10 +2,12 @@ import React from "react";
 import "./Weather.css";
 import "./App.css";
 import "./Footer.css";
+import Weather from "./Weather";
 
-export default function Footer() {
+export default function App() {
   return (
-    <div className="Footer">
+    <div className="App">
+      <Weather defaultCity="Vienna" />
       <footer className="text-center mt-3">
         This project was coded by Samantha Baran and is open-sourced on{" "}
         <a
