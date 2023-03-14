@@ -12,8 +12,10 @@ body {
   background-repeat: no-repeat;
   background-size: cover;
   max-width: 200%;
+  background-attachment: fixed;
   font-family: sans-serif;
 }
+
 h1 {
   font-size: 32px;
   opacity: 80%;
