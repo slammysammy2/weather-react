@@ -4,7 +4,7 @@
   border-radius: 5px;
 }
 
-#city-input {
+.WeatherInfo #city-input {
   border-color: #0f253a;
   opacity: 80%;
   font-style: italic;
@@ -12,18 +12,18 @@
 .Weather .overview {
   margin-bottom: 20px;
 }
-.Weather #icon {
+.WeatherInfo #icon {
   margin-right: 5px;
   height: 60px;
   width: 60px;
 }
-.Weather .weather-temperature strong {
+.WeatherInfo .weather-temperature strong {
   font-weight: 40;
   font-size: 46px;
   line-height: 1;
 }
 
-.Weather .weather-temperature .unit {
+.WeatherInfo .weather-temperature .unit {
   position: relative;
   font-size: 16px;
   top: -34px;
@@ -53,4 +53,8 @@
 
 .Weather .weather-forecast-temperature-min {
   font-size: 13px;
+}
+
+.WeatherInfo .humidity .ul {
+  font-size: 50px;
 }

@@ -8,7 +8,7 @@ export default function App() {
   return (
     <div className="App">
       <Weather defaultCity="Vienna" />
-      <footer className="text-center mt-3">
+      <footer className="text-center mt-0">
         This project was coded by Samantha Baran and is open-sourced on{" "}
         <a
           href="https://github.com/slammysammy2/weather-react"
